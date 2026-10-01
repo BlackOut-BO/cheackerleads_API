@@ -29,6 +29,20 @@ def _phone(phone):
     return {"valid": not phone.endswith("000"), "number": phone, "line_type": "mobile", "carrier": "T", "country_code": "DE", "error": None}
 
 
+@pytest.fixture(autouse=True)
+def no_real_keys(monkeypatch):
+    """Тесты никогда не ходят во внешние API: ключи из .env (в т.ч. рабочие) обнуляются."""
+    from app.leads import service as svc
+    from app.leads.legacy import config
+    for k in ("ABSTRACT_API_KEY", "IPDATA_API_KEY", "NUMVERIFY_API_KEY", "RAPIDAPI_KEY", "PROXY_URL", "CHECKNUMBER_API_KEY"):
+        monkeypatch.setattr(config, k, "" if k in ("PROXY_URL", "CHECKNUMBER_API_KEY") else None)
+    lc = svc.lead_checker
+    for name in ("email_checker", "ip_checker", "phone_checker", "whatsapp_checker", "facebook_checker", "google_checker",
+                 "instagram_checker", "snapchat_checker", "x_checker"):
+        monkeypatch.setattr(getattr(lc, name), "api_key", None)
+    monkeypatch.setattr(lc.whatsapp_checker, "proxy_url", None)
+
+
 @pytest.fixture()
 def lx(client, monkeypatch):
     from app.leads import service as svc
