@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Логи
+logs/
+*.log
+
+# Временные файлы
+*.tmp
+*.temp
+.DS_Store
+
+# Документация (опционально)
+*.md
+!README.md
+
+# Тестовые файлы
+test_*.py
+*_test.py
+
+# CSV файлы (опционально, если не нужны в контейнере)
+*.csv
+
+# Загруженные файлы
+checked_*.csv
+checked_*.txt

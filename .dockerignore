@@ -1,0 +1,12 @@
+.env
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+data
+tests
+web
+leads_checker/.env
+leads_checker/authorized_users.json
+leads_checker/Dockerfile
+leads_checker/docker-compose.yml

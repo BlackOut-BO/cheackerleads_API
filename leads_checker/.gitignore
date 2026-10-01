@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Authorized users file
+authorized_users.json
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+
+# CSV files (optional)
+*.csv
+checked_*.csv
+checked_*.txt

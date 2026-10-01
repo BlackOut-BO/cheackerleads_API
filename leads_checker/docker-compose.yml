@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  checkerleads-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: checkerleads-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Монтируем .env файл (опционально, если хотите обновлять без пересборки)
+      - ./.env:/app/.env:ro
+      # Монтируем директорию для логов (опционально)
+      - ./logs:/app/logs
+    # Порт не обязателен, но можно указать для совместимости
+    # ports:
+    #   - "8080:8080"
+    # Логирование
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
